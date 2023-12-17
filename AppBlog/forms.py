@@ -1,34 +1,24 @@
 from django import forms
 
-
-class KnitForm(forms.Form):
-    nombre = forms.CharField()
-    tecnica = forms.CharField()
-    material = forms.CharField()
-    descripcion = forms.CharField()
-    imagen = forms.ImageField()
-    instrucciones = forms.CharField()
-    autor = forms.CharField()
-    fecha = forms.DateField()
+from AppBlog.models import Knit, Yarn, Accessories
 
 
-class YarnForm(forms.Form):
-    nombre = forms.CharField()
-    material = forms.CharField()
-    descripcion = forms.CharField()
-    imagen = forms. ImageField()
-    autor = forms.CharField()
-    fecha = forms.DateField()
+class KnitForm(forms.ModelForm):
+    class Meta:
+        model = Knit
+        fields = "__all__"
 
 
-class AccessoriesForm(forms.Form):
-    nombre = forms.CharField()
-    tecnica = forms.CharField()
-    material = forms.CharField()
-    descripcion = forms.CharField()
-    imagen = forms.ImageField()
-    autor = forms.CharField()
-    fecha = forms.DateField()
+class YarnForm(forms.ModelForm):
+    class Meta:
+        model = Yarn
+        fields = "__all__"
+
+
+class AccessoriesForm(forms.ModelForm):
+    class Meta:
+        model = Accessories
+        fields = "__all__"
 
 
 class SearchKnitForm(forms.Form):

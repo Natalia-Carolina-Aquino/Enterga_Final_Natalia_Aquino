@@ -42,42 +42,42 @@ class KnitCreate(LoginRequiredMixin, CreateView):
     model = Knit
     template_name = "AppBlog/crear_tejido.html"
     success_url = "/app/listar_tejido/"
-    fields = ["nombre", "tecnica", "material", "descripcion", "imagen", "instrucciones", "autor", "fecha"]
+    fields = "__all__"
 
 
 class YarnCreate(LoginRequiredMixin, CreateView):
     model = Yarn
     template_name = "AppBlog/crear_hilado.html"
     success_url = "/app/listar_hilado/"
-    fields = ["nombre", "material", "descripcion", "imagen", "autor", "fecha"]
+    fields = "__all__"
 
 
 class AccessoriesCreate(LoginRequiredMixin, CreateView):
     model = Accessories
     template_name = "AppBlog/crear_accesorios.html"
     success_url = "/app/listar_accesorio/"
-    fields = ["nombre", "tecnica", "material", "descripcion", "imagen", "autor", "fecha"]
+    fields = "__all__"
 
 
 class KnitUpdate(LoginRequiredMixin, UpdateView):
     model = Knit
     template_name = "AppBlog/actualizar_tejido.html"
     success_url = "/app/listar_tejido/"
-    fields = ["nombre", "tecnica", "material", "descripcion", "imagen", "instrucciones", "autor", "fecha"]
+    fields ="__all__"
 
 
 class YarnUpdate(LoginRequiredMixin, UpdateView):
     model = Yarn
     template_name = "AppBlog/actualizar_hilado.html"
     success_url = "/app/listar_hilado/"
-    fields = ["nombre", "material", "descripcion", "imagen", "autor", "fecha"]
+    fields = "__all__"
 
 
 class AccessoriesUpdate(LoginRequiredMixin, UpdateView):
     model = Accessories
     template_name = "AppBlog/actualizar_accesorio.html"
     success_url = "/app/listar_accesorio/"
-    fields= ["nombre", "tecnica", "material", "descripcion", "imagen", "autor", "fecha"]
+    fields= "__all__"
 
 
 class KnitDelete(LoginRequiredMixin, DeleteView):

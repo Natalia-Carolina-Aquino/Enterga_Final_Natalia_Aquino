@@ -1,1 +1,94 @@
 {% extends 'index.html'%}
+{%load static %}
+ {% block navigation %}
+<nav class="navbar navbar-light bg-light static-top">
+            <div class="container">
+                <a class="navbar-brand" href="{% url 'ListaTejidos' %}">Tejidos</a>
+                <a class="navbar-brand" href="{% url 'CrearHilado' %}">Ingresar Hilado</a>
+                <a class="navbar-brand" href="{% url 'ListaAccesorios' %}">Accesorios</a>
+                {% if user.is_authenticated %}
+                    <img src="{{user.avatar.imagen.url}}" alt="" height="100px">
+                    <a class="btn btn-primary" href="{% url 'Logout' %}">Logout</a>
+                {% else %}
+                    <a class="btn btn-primary" href="{% url 'Login' %}">Login</a>
+                {% endif %}
+            </div>
+        </nav>
+        {% endblock %}
+{% block masthead %}
+<header class="masthead">
+    <div class="container position-relative">
+        <div class="row justify-content-center">
+            <div class="col-xl-6">
+                <div class="text-center text-white">
+                    <!-- Page heading-->
+                    <h1 class="mb-5">¡Descubrí los mejores modelos para tejer y compartí tus proyectos!</h1>
+                    <!-- Signup form-->
+                    <!-- * * * * * * * * * * * * * * *-->
+                    <!-- * * SB Forms Contact Form * *-->
+                    <!-- * * * * * * * * * * * * * * *-->
+                    <!-- This form is pre-integrated with SB Forms.-->
+                    <!-- To make this form functional, sign up at-->
+                    <!-- https://startbootstrap.com/solution/contact-forms-->
+                    <!-- to get an API token!-->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div>
+    <form action="/app/buscar_hilado/" method="get" enctype="multipart/form-data">
+        <input type="text" name="nombre">
+        <input type="submit" value="Buscar">
+    </form>
+</div>
+
+{% for hilado in object_list %}
+<h2>{{hilado.nombre}}</h2>
+<img src="{{ hilado.imagen.url }}" height="200">
+<p>
+    <a href="{% url 'DetalleHilado' hilado.id %}">Leer más</a>
+</p>
+<p>
+    <a href="{% url 'EditarHilado' hilado.id %}">Editar</a>
+</p>
+<p>
+    <a href="{% url 'EliminarHilado' hilado.id %}">Eliminar</a>
+</p>
+<hr>
+{% endfor %}
+{% endblock %}
+   {% block footer %}
+        <footer class="footer bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
+                        <ul class="list-inline mb-2">
+                            <li class="list-inline-item"><a href="#!">About</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="#!">Contact</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="#!">Terms of Use</a></li>
+                            <li class="list-inline-item">⋅</li>
+                            <li class="list-inline-item"><a href="#!">Privacy Policy</a></li>
+                        </ul>
+                        <p class="text-muted small mb-4 mb-lg-0">&copy; Natalia C. Aquino. All Rights Reserved.</p>
+                    </div>
+                    <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
+                        <ul class="list-inline mb-0">
+                            <li class="list-inline-item me-4">
+                                <a href="#!"><i class="bi-facebook fs-3"></i></a>
+                            </li>
+                            <li class="list-inline-item me-4">
+                                <a href="#!"><i class="bi-twitter fs-3"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#!"><i class="bi-instagram fs-3"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        {% endblock %}

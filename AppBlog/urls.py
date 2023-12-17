@@ -14,10 +14,14 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from AppBlog.views import (KnitList, YarnList, AccessoriesList, KnitDetail, YarnDetail, AccessoriesDetail, KnitCreate)
+from django.conf.urls.static import static
+
+from AppBlog.views import (KnitList, YarnList, AccessoriesList, KnitDetail, YarnDetail, AccessoriesDetail, KnitCreate,
+                           busqueda_tejido, busqueda_hilado, busqueda_accesorio)
 from AppBlog.views import (YarnCreate, AccessoriesCreate, KnitUpdate, YarnUpdate, AccessoriesUpdate)
 from AppBlog.views import (KnitDelete, YarnDelete, AccessoriesDelete)
 from django.urls import path
+from django.conf import settings
 
 
 urlpatterns = [
@@ -36,5 +40,9 @@ urlpatterns = [
     path('borrar_tejido/<int:pk>', KnitDelete.as_view(), name="EliminarTejido"),
     path('borrar_hilado/<int:pk>', YarnDelete.as_view(), name="EliminarHilado"),
     path('borrar_accesorio/<int:pk>', AccessoriesDelete.as_view(), name="EliminarAccesorio"),
+    path('buscar_tejido/', busqueda_tejido),
+    path('buscar_hilado/', busqueda_hilado),
+    path('buscar_accesorio/', busqueda_accesorio),
 ]
 
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

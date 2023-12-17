@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm
-
 from accounts.forms import UserRegisterForm, UserUpdateForm, AvatarUpdateForm
 from accounts.models import Avatar
 
@@ -27,11 +26,15 @@ def login_request(request):
 
 def register_request(request):
     if request.method == "POST":
-        form = UserRegisterForm()
-        contexto = {
-            "form": form
-        }
-        return render(request, "accounts/registro.html", contexto)
+        form = UserRegisterForm(request.post)
+        if form.is_valid():
+            form.save()
+            return redirect('ListaTejidos')
+    form = UserRegisterForm()
+    contexto = {
+        "form": form
+    }
+    return render(request, "accounts/registro.html", contexto)
 
 
 def editar_request(request):

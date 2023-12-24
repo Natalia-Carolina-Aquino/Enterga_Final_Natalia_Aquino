@@ -1,6 +1,6 @@
 from django import forms
 
-from AppBlog.models import Knit, Yarn, Accessories
+from AppBlog.models import Knit, Yarn, Accessories, KnitComment, YarnComment, AccessoriesComment
 
 
 class KnitForm(forms.ModelForm):
@@ -31,3 +31,21 @@ class SearchYarnForm(forms.Form):
 
 class SearchAccessoriesForm(forms.Form):
     nombre = forms.CharField()
+
+
+class KnitCommentForm(forms.ModelForm):
+    class Meta:
+        model = KnitComment
+        fields = ("tejido", "usuario", "comentario")
+
+
+class YarnCommentForm(forms.ModelForm):
+    class Meta:
+        model = YarnComment
+        fields = ("hilado", "usuario", "comentario")
+
+
+class AccessoriesCommentForm(forms.ModelForm):
+    class Meta:
+        model = AccessoriesComment
+        fields = ("accesorio", "usuario", "comentario")

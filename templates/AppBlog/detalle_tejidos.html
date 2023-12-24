@@ -41,7 +41,7 @@
 <hr>
 <h5>{{object.descripcion}}</h5>
 <br>
-<h5><P>Técnica de Tejido: {{object.tecnica}}</P></h5>
+<h5><p>Técnica de Tejido: {{object.tecnica}}</p></h5>
 <h5><p>Material Utilizado: {{object.material}}</p></h5>
 <img src="{{ object.imagen.url }}" height="400">
 <br>
@@ -50,6 +50,16 @@
 <h5>{{object.instrucciones}}</h5>
 <h6>{{object.autor}}, {{object.fecha}}</h6>
 
+{% if user.is_authenticated %}
+<form action="" method="post">
+    {% csrf_token %}
+    {{form.as_p }}
+    <input type="text" name="comentario">
+    <input type="hidden" name="tejido" value="{{tejido.id}}">
+    <input type="submit" value="Enviar Comentario">
+</form>
+<a class="btn btn-primary" href="{% url 'ListaTejidos' %}">Volver</a>
+{% endif %}
 {% endblock %}
         {% block footer %}
                 <footer class="footer bg-light">

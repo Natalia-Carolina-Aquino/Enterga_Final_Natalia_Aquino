@@ -10917,3 +10917,11 @@ footer.footer {
   padding-top: 4rem;
   padding-bottom: 4rem;
 }
+
+ background.body {
+  background: url("static/img/joblist.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}

@@ -44,6 +44,14 @@
 <h5>Material: {{object.material}}</h5>
 <h6>{{object.autor}}, {{object.fecha}}</h6>
 
+{% if user.is_authenticated %}
+<form action="" method="post">
+    <input type="text" name="comentario">
+    <input type="hidden" name="hilado" value="{{hilado.id}}">
+    <input type="submit" value="Enviar Comentario">
+</form>
+<a class="btn btn-primary" href="{% url 'ListaHilados'%}">Volver</a>
+{% endif %}
 {%endblock %}
         {% block footer %}
                 <footer class="footer bg-light">

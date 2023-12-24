@@ -17,7 +17,8 @@ Including another URLconf
 from django.conf.urls.static import static
 
 from AppBlog.views import (KnitList, YarnList, AccessoriesList, KnitDetail, YarnDetail, AccessoriesDetail, KnitCreate,
-                           busqueda_tejido, busqueda_hilado, busqueda_accesorio)
+                           busqueda_tejido, busqueda_hilado, busqueda_accesorio, comentario_tejido, comentario_hilado,
+                           comentario_accesorio, ComingSoon)
 from AppBlog.views import (YarnCreate, AccessoriesCreate, KnitUpdate, YarnUpdate, AccessoriesUpdate)
 from AppBlog.views import (KnitDelete, YarnDelete, AccessoriesDelete)
 from django.urls import path
@@ -43,6 +44,10 @@ urlpatterns = [
     path('buscar_tejido/', busqueda_tejido),
     path('buscar_hilado/', busqueda_hilado),
     path('buscar_accesorio/', busqueda_accesorio),
+    path('comentar_tejido/<int:pk>', comentario_tejido),
+    path('comentar_hilado/<int:pk>', comentario_hilado),
+    path('comentar_accesorio/<int:pk>', comentario_accesorio),
+    path('en_construccion/', ComingSoon, name="MuyPronto"),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

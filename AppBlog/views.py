@@ -1,9 +1,11 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from AppBlog.forms import SearchKnitForm, SearchYarnForm, SearchAccessoriesForm
-from AppBlog.models import Knit, Yarn, Accessories
+from AppBlog.forms import SearchKnitForm, SearchYarnForm, SearchAccessoriesForm, KnitCommentForm, YarnCommentForm, \
+    AccessoriesCommentForm
+from AppBlog.models import Knit, Yarn, Accessories, KnitComment, YarnComment, AccessoriesComment, UnfinishedPage
+
 
 # Create your views here.
 
@@ -63,7 +65,7 @@ class KnitUpdate(LoginRequiredMixin, UpdateView):
     model = Knit
     template_name = "AppBlog/actualizar_tejido.html"
     success_url = "/app/listar_tejido/"
-    fields ="__all__"
+    fields = "__all__"
 
 
 class YarnUpdate(LoginRequiredMixin, UpdateView):
@@ -129,3 +131,42 @@ def busqueda_accesorio(request):
         "form": SearchAccessoriesForm()
     }
     return render(request, "AppBlog/lista_accesorios.html", contexto)
+
+
+@login_required()
+def comentario_tejido(request):
+    formulario = KnitCommentForm(request.post)
+    if formulario.is_valid():
+        informacion = formulario.cleaned_data
+        tejido = Knit.objects.get(id=informacion["tejido"])
+        comentario_crear = KnitComment(usuario=request.user, tejido=tejido, comentario=informacion["comentario"])
+        comentario_crear.save()
+        return redirect("/app/listar_tejido/")
+
+
+@login_required()
+def comentario_hilado(request):
+    formulario = YarnCommentForm(request.post)
+    if formulario.is_valid():
+        informacion = formulario.cleaned_data
+        hilado = Yarn.objects.get(id= informacion["hilado"])
+        comentario_crear = YarnComment(usuario=request.user, hilado=hilado, comentario=informacion["comentario"])
+        comentario_crear.save()
+        return redirect("/app/listar_hilado/")
+
+
+@login_required()
+def comentario_accesorio(request):
+    formulario = AccessoriesCommentForm(request.post)
+    if formulario.is_valid():
+        informacion = formulario.cleaned_data
+        accesorio = Accessories.objects.get(id=informacion["accesorio"])
+        comentario_crear = AccessoriesComment(usuario=request.user, accesorio=accesorio, comentario=informacion["comentario"])
+        comentario_crear.save()
+        return redirect("/app/listar_accesorio/")
+
+
+@login_required()
+def ComingSoon(request):
+    contexto = {}
+    return render(request,"AppBlog/pagina_en_construccion.html", contexto)

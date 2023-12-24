@@ -45,6 +45,14 @@
 <h5>{{object.descripcion}}</h5>
 <h6>{{object.autor}}, {{object.fecha}}</h6>
 
+{% if user.is_authenticated %}
+<form action="" method="post">
+    <input type="text" name="comentario">
+    <input type="hidden" name="accesorio" value="{{accesorio.id}}">
+    <input type="submit" value="Enviar Comentario">
+</form>
+<a class="btn btn-primary" href="{% url 'ListaAccesorios' %}">Volver</a>
+{% endif %}
 {%endblock %}
         {% block footer %}
                 <footer class="footer bg-light">

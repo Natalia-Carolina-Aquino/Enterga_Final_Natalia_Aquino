@@ -9,9 +9,9 @@ class Knit(models.Model):
     nombre = models.CharField(max_length=50, unique=True)
     tecnica = models.CharField(max_length=30)
     material = models.CharField(max_length=200)
-    descripcion = models.CharField(max_length=500)
+    descripcion = models.TextField(max_length=500)
     imagen = models.ImageField(upload_to="tejidos", null=True, blank=True)
-    instrucciones = models.CharField(max_length=5000)
+    instrucciones = models.TextField(max_length=5000)
     autor = models.CharField(max_length=50)
     fecha = models.DateTimeField(default=datetime.datetime.now())
 
@@ -22,13 +22,13 @@ class Knit(models.Model):
 class KnitComment(models.Model):
     tejido = models.ForeignKey(Knit, on_delete=models.CASCADE)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
-    comentario = models. CharField(max_length=500)
+    comentario = models. TextField(max_length=500)
     fecha = models.DateTimeField(default=datetime.datetime.now())
 
 class Yarn(models.Model):
     nombre = models.CharField(max_length=50)
     material = models.CharField(max_length= 200)
-    descripcion = models.CharField(max_length=1000)
+    descripcion = models.TextField(max_length=1000)
     imagen = models.ImageField(upload_to="hilados", null=True, blank=True)
     autor = models.CharField(max_length=50)
     fecha = models.DateTimeField(default=datetime.datetime.now())
@@ -40,14 +40,14 @@ class Yarn(models.Model):
 class YarnComment(models.Model):
     hilado = models.ForeignKey(Yarn, on_delete=models.CASCADE)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
-    comentario = models.CharField(max_length=500)
+    comentario = models.TextField(max_length=500)
     fecha = models.DateTimeField(default=datetime.datetime.now())
 
 class Accessories(models.Model):
     nombre = models.CharField(max_length=100)
     tecnica = models.CharField(max_length=30)
     material = models.CharField(max_length=200)
-    descripcion = models.CharField(max_length=500)
+    descripcion = models.TextField(max_length=500)
     imagen = models.ImageField(upload_to="accesorios", null=True, blank=True)
     autor = models.CharField(max_length=50)
     fecha = models.DateTimeField(default=datetime.datetime.now())
@@ -59,5 +59,9 @@ class Accessories(models.Model):
 class AccessoriesComment(models.Model):
     accesorio = models.ForeignKey(Accessories, on_delete=models.CASCADE)
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
-    comentario = models.CharField(max_length=500)
+    comentario = models.TextField(max_length=500)
     fecha = models.DateTimeField(default=datetime.datetime.now())
+
+
+class UnfinishedPage(models.Model):
+    fondo = models.ImageField(upload_to="fondos")

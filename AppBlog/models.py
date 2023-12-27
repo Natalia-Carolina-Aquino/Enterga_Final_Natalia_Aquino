@@ -25,6 +25,9 @@ class KnitComment(models.Model):
     comentario = models. TextField(max_length=500)
     fecha = models.DateTimeField(default=datetime.datetime.now())
 
+    def __str__(self):
+        return f"Comentario realizado por {self.usuario} en la entrada {self.tejido}:\n{self.comentario}\n{self.fecha}"
+
 class Yarn(models.Model):
     nombre = models.CharField(max_length=50)
     material = models.CharField(max_length= 200)
@@ -42,6 +45,9 @@ class YarnComment(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     comentario = models.TextField(max_length=500)
     fecha = models.DateTimeField(default=datetime.datetime.now())
+
+    def __str__(self):
+        return f"Comentario realizado por {self.usuario} en la entrada {self.hilado}:\n{self.comentario}\n{self.fecha}"
 
 class Accessories(models.Model):
     nombre = models.CharField(max_length=100)
@@ -61,6 +67,9 @@ class AccessoriesComment(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     comentario = models.TextField(max_length=500)
     fecha = models.DateTimeField(default=datetime.datetime.now())
+
+    def __str__(self):
+        return f"Comentario realizado por {self.usuario} en la entrada {self.accesorio}:\n{self.comentario}\n{self.fecha}"
 
 
 class UnfinishedPage(models.Model):

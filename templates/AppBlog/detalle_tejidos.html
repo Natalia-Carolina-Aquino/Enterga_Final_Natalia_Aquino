@@ -41,8 +41,8 @@
 <hr>
 <h5>{{object.descripcion}}</h5>
 <br>
-<h5><p>Técnica de Tejido: {{object.tecnica}}</p></h5>
-<h5><p>Material Utilizado: {{object.material}}</p></h5>
+<h5>Técnica de Tejido: {{object.tecnica}}</h5>
+<h5>Material Utilizado: {{object.material}}</h5>
 <img src="{{ object.imagen.url }}" height="400">
 <br>
 <h2><u>Instrucciones</u></h2>
@@ -53,11 +53,21 @@
 {% if user.is_authenticated %}
 <form action="" method="post">
     {% csrf_token %}
-    {{form.as_p }}
     <input type="text" name="comentario">
     <input type="hidden" name="tejido" value="{{tejido.id}}">
     <input type="submit" value="Enviar Comentario">
 </form>
+<div>
+{% if comentario_tejido.all %}
+  <h2>Comments:</h2>
+  <ul>
+    {% for comment in comentario_tejido %}
+      <li>{{ comment.usuario }}: {{ comment.comentario }}</li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>Todavía no hay comentarios.</p>
+{% endif %}
 <a class="btn btn-primary" href="{% url 'ListaTejidos' %}">Volver</a>
 {% endif %}
 {% endblock %}
@@ -67,26 +77,26 @@
                 <div class="row">
                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
                         <ul class="list-inline mb-2">
-                            <li class="list-inline-item"><a href="#!">About</a></li>
+                            <li class="list-inline-item"><a href="{% url 'About' %}">About</a></li>
                             <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Contact</a></li>
+                            <li class="list-inline-item"><a href="{% url 'MuyPronto' %}">Contact</a></li>
                             <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Terms of Use</a></li>
+                            <li class="list-inline-item"><a href="{% url 'MuyPronto' %}">Terms of Use</a></li>
                             <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Privacy Policy</a></li>
+                            <li class="list-inline-item"><a href="{% url 'MuyPronto' %}">Privacy Policy</a></li>
                         </ul>
                         <p class="text-muted small mb-4 mb-lg-0">&copy; Natalia C. Aquino. All Rights Reserved.</p>
                     </div>
                     <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
                         <ul class="list-inline mb-0">
                             <li class="list-inline-item me-4">
-                                <a href="#!"><i class="bi-facebook fs-3"></i></a>
+                                <a href="{% url 'MuyPronto' %}"><i class="bi-facebook fs-3"></i></a>
                             </li>
                             <li class="list-inline-item me-4">
-                                <a href="#!"><i class="bi-twitter fs-3"></i></a>
+                                <a href="{% url 'MuyPronto' %}"><i class="bi-twitter fs-3"></i></a>
                             </li>
                             <li class="list-inline-item">
-                                <a href="#!"><i class="bi-instagram fs-3"></i></a>
+                                <a href="{% url 'MuyPronto' %}"><i class="bi-instagram fs-3"></i></a>
                             </li>
                         </ul>
                     </div>

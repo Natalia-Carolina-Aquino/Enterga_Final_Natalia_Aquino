@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import AuthenticationForm
 from accounts.forms import UserRegisterForm, UserUpdateForm, AvatarUpdateForm
 from accounts.models import Avatar
@@ -26,12 +26,19 @@ def login_request(request):
     return render(request, "accounts/login.html", contexto)
 
 
+@login_required()
+def logout_user(request):
+    logout(request)
+    contexto = {"mesaage": "Has cerrado tu sesión."}
+    return redirect("/accounts/login/")
+
+
 def register_request(request):
     if request.method == "POST":
-        form = UserRegisterForm(request.post)
+        form = UserRegisterForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('Login')
+            return redirect('/accounts/login/')
     form = UserRegisterForm()
     contexto = {
         "form": form
@@ -43,18 +50,18 @@ def register_request(request):
 def editar_request(request):
     user = request.user
     if request.method == "POST":
-        form = UserUpdateForm(request.post)
+        form = UserUpdateForm(request.POST)
         if form.is_valid():
             data = form.cleaned_data
             user.email = data["email"]
             user.save()
 
-            return redirect("Home")
+            return redirect("/accounts/home/")
     form = UserUpdateForm(initial={"email": user.email})
     contexto = {
         "form": form
     }
-    return render(request, "accounts/registro.html", contexto)
+    return render(request, "accounts/avatar.html", contexto)
 
 
 @login_required()
@@ -73,7 +80,7 @@ def editar_avatar_request(request):
                     imagen=data["imagen"]
                 )
             avatar.save()
-            return redirect("Home")
+            return redirect("/accounts/home/")
     form = AvatarUpdateForm()
     contexto = {
         "form": form

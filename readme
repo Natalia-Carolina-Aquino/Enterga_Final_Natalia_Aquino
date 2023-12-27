@@ -1,0 +1,37 @@
+Blog de Tejido
+
+Este es un trabajo creado de forma individual.
+
+Contiene una sección de registro de usuario y una de inicio de sesión, que redirige a la página principal (Home)
+
+Dentro de la página principal, en la barra de navegación, se encuentran las diferentes secciones de la página. Además esta página
+cuenta con imágenes ilustrativas del contenido a tratar, comentarios de usuarios y un pie de página con la sección About,
+que contiene una breve descripción de mí.
+
+-Tejidos: Si ingresamos a esta sección, nos dirigimos a una página que nos muestra un listado con todos los tejidos
+subidos a la página y una vista previa de los mismos. En la parte superior posee una barra de navegación que nos
+da la opción de subir un nuevo tejido, dirigirnos al listado de hilados o de accesorios, o de cerrar la sesión.
+En la parte del listado, cada item posee las opciones de mostrar el detalle, que nos llevará a una pantalla con toda la
+información del mismo. También tenemos la posibilidad de editar el contenido o eliminarlo. Cada una de estas opciones tiene un botón que permite volver al listado.
+Al final de la lista tenemos un botón que nos permite volver a la página principal.
+En el pie de página tenemos la sección About.
+
+-Hilados: Si ingresamos a esta sección, nos dirigimos a una página que nos muestra un listado con todos los hilados
+subidos a la página y una vista previa de los mismos. En la parte superior posee una barra de navegación que nos
+da la opción de subir un nuevo hilado, dirigirnos al listado de tejidos o de accesorios, o de cerrar la sesión.
+En la parte del listado, cada item posee las opciones de mostrar el detalle, que nos llevará a una pantalla con toda la
+información del mismo. También tenemos la posibilidad de editar el contenido o eliminarlo. Cada una de estas opciones tiene un botón que permite volver al listado.
+Al final de la lista tenemos un botón que nos permite volver a la página principal.
+En el pie de página tenemos la sección About.
+
+-Accesorios: Si ingresamos a esta sección, nos dirigimos a una página que nos muestra un listado con todos los accesotios
+subidos a la página y una vista previa de los mismos. En la parte superior posee una barra de navegación que nos
+da la opción de subir un nuevo accesorio, dirigirnos al listado de tejidos o de hilados, o de cerrar la sesión.
+En la parte del listado, cada item posee las opciones de mostrar el detalle, que nos llevará a una pantalla con toda la
+información del mismo. También tenemos la posibilidad de editar el contenido o eliminarlo. Cada una de estas opciones tiene un botón que permite volver al listado.
+Al final de la lista tenemos un botón que nos permite volver a la página principal.
+En el pie de página tenemos la sección About.
+
+-Editar Perfil: Al ingresar a esta opción, nos encontraremos con un formulario que nos permitirá editar nuestros datos de usuario.
+
+-Editar Avatar: Al ingresar a esta opción, nos encontraremos con un formulario que nos permitirá ingresar o editar nuestro avatar.

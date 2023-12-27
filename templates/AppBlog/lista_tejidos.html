@@ -38,8 +38,9 @@
     </div>
 </header>
 <div>
-    <form action='/app/buscar_tejido/' method="get" enctype="multipart/form-data">
-        <input type="text" name="nombre">
+    <form action='app/buscar_tejido/' method="get" enctype="multipart/form-data">
+        {{ form.as_p }}
+        <input type="text" value="">
         <input type="submit" value="Buscar">
     </form>
 </div>
@@ -58,6 +59,7 @@
     </p>
 <hr>
     {% endfor %}
+<a class="btn btn-primary" href="/accounts/home/">Volver</a>
 {% endblock %}
         {% block footer %}
         <footer class="footer bg-light">
@@ -65,7 +67,7 @@
                 <div class="row">
                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
                         <ul class="list-inline mb-2">
-                            <li class="list-inline-item"><a href="{% url 'MuyPronto' %}">About</a></li>
+                            <li class="list-inline-item"><a href="{% url 'About' %}">About</a></li>
                             <li class="list-inline-item">⋅</li>
                             <li class="list-inline-item"><a href="{% url 'MuyPronto'%}">Contact</a></li>
                             <li class="list-inline-item">⋅</li>

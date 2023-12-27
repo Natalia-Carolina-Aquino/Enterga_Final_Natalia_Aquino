@@ -4,9 +4,9 @@
 <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
-    <input class="btn btn-primary" type="submit" value="Crear Avatar">
+    <input class="btn btn-primary" type="submit" value="Editar">
+    <a class="btn btn-primary" href="{% url 'Home' %}">Volver</a>
 </form>
-
 <header class="masthead">
     <div class="container position-relative">
         <div class="row justify-content-center">
@@ -29,70 +29,13 @@
     </div>
 </header>
 {% endblock %}
-{% block images %}
- <section class="showcase">
-            <div class="container-fluid p-0">
-                <div class="row g-0">
-                    <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url({% static 'assets/img/bg-showcase-1.jpeg' %})"></div>
-                    <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-                        <h2>Encuentra Ideas Innovadoras</h2>
-                        <p class="lead mb-0">Tenemos una gran variedad de tejidos adaptados a todos los gustos.</p>
-                    </div>
-                </div>
-                <div class="row g-0">
-                    <div class="col-lg-6 text-white showcase-img" style="background-image: url({% static 'assets/img/bg-showcase-2.jpeg' %})"></div>
-                    <div class="col-lg-6 my-auto showcase-text">
-                        <h2>Descubre los Materiales Ideales para Embellecer tus Trabajos</h2>
-                        <p class="lead mb-0">Encuentra la fibra adecuada para tus creaciones.</p>
-                    </div>
-                </div>
-                <div class="row g-0">
-                    <div class="col-lg-6 order-lg-2 text-white showcase-img" style="background-image: url({% static 'assets/img/bg-showcase-3.jpeg' %})"></div>
-                    <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-                        <h2>Aprende sobre las Herramientas que Facilitarán tu Trabajo</h2>
-                        <p class="lead mb-0">Encuentra los accesorios que harán realidad tus ideas.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        {% endblock %}
- {% block testimonials %}
- <section class="testimonials text-center bg-light">
-            <div class="container">
-                <h2 class="mb-5">Lo que dicen nuestros miembros...</h2>
-                <div class="row">
-                    <div class="col-lg-4">
-                        <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                            <img class="img-fluid rounded-circle mb-3" src="{% static 'assets/img/testimonials-1.jpg' %}" alt="..." />
-                            <h5>Micaela</h5>
-                            <p class="font-weight-light mb-0">"Los proyectos son hermosos! Me encantan!"</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                            <img class="img-fluid rounded-circle mb-3" src="{% static 'assets/img/testimonials-2.jpg' %}" alt="..." />
-                            <h5>Fernando</h5>
-                            <p class="font-weight-light mb-0">"Esta página fue una sorpresa agradable al momento de comenzar a tejer."</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="testimonial-item mx-auto mb-5 mb-lg-0">
-                            <img class="img-fluid rounded-circle mb-3" src="{% static 'assets/img/testimonials-3.jpg' %}" alt="..." />
-                            <h5>Sara</h5>
-                            <p class="font-weight-light mb-0">"Siempre vengo a esta página a inspirarme!"</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        {% endblock %}
         {% block footer %}
         <footer class="footer bg-light">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
                         <ul class="list-inline mb-2">
-                            <li class="list-inline-item"><a href="{% url 'MuyPronto' %}">About</a></li>
+                            <li class="list-inline-item"><a href="{% url 'About' %}">About</a></li>
                             <li class="list-inline-item">⋅</li>
                             <li class="list-inline-item"><a href="{% url 'MuyPronto' %}">Contact</a></li>
                             <li class="list-inline-item">⋅</li>

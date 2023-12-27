@@ -4,7 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from AppBlog.forms import SearchKnitForm, SearchYarnForm, SearchAccessoriesForm, KnitCommentForm, YarnCommentForm, \
     AccessoriesCommentForm
-from AppBlog.models import Knit, Yarn, Accessories, KnitComment, YarnComment, AccessoriesComment, UnfinishedPage
+from AppBlog.models import Knit, Yarn, Accessories, KnitComment, YarnComment, AccessoriesComment
 
 
 # Create your views here.
@@ -102,7 +102,7 @@ class AccessoriesDelete(LoginRequiredMixin, DeleteView):
 
 @login_required
 def busqueda_tejido(request):
-    nombre = request.GET["nombre"]
+    nombre = request.GET.get("nombre")
     tejido = Knit.objects.filter(nombre__icontains=nombre)
     contexto = {
         "tejido": tejido,
@@ -135,24 +135,31 @@ def busqueda_accesorio(request):
 
 @login_required()
 def comentario_tejido(request):
-    formulario = KnitCommentForm(request.post)
-    if formulario.is_valid():
-        informacion = formulario.cleaned_data
-        tejido = Knit.objects.get(id=informacion["tejido"])
-        comentario_crear = KnitComment(usuario=request.user, tejido=tejido, comentario=informacion["comentario"])
-        comentario_crear.save()
-        return redirect("/app/listar_tejido/")
+    if request.method == "POST":
+        formulario = KnitCommentForm(request.POST)
+        if formulario.is_valid():
+            informacion = formulario.cleaned_data
+            tejido = Knit.objects.get(id=informacion["tejido"])
+            comentario_crear = KnitComment(usuario=request.user, tejido=tejido, comentario=informacion["comentario"])
+            comentario_crear.save()
+            return redirect("/app/listar_tejido/")
+        else:
+            formulario = KnitCommentForm()
+        return render(request, "AppBlog/detalle_tejidos.html", {'form': formulario})
+
+
 
 
 @login_required()
 def comentario_hilado(request):
-    formulario = YarnCommentForm(request.post)
+    formulario = YarnCommentForm(request.POST)
     if formulario.is_valid():
         informacion = formulario.cleaned_data
         hilado = Yarn.objects.get(id= informacion["hilado"])
         comentario_crear = YarnComment(usuario=request.user, hilado=hilado, comentario=informacion["comentario"])
         comentario_crear.save()
         return redirect("/app/listar_hilado/")
+    return render(request, "AppBlog/detalle_hilados.html", {"form": formulario})
 
 
 @login_required()
@@ -164,9 +171,15 @@ def comentario_accesorio(request):
         comentario_crear = AccessoriesComment(usuario=request.user, accesorio=accesorio, comentario=informacion["comentario"])
         comentario_crear.save()
         return redirect("/app/listar_accesorio/")
+    return render(request, "AppBlog/detalle_accesorios.html", {'form': formulario} )
 
 
 @login_required()
 def ComingSoon(request):
     contexto = {}
     return render(request,"AppBlog/pagina_en_construccion.html", contexto)
+
+
+def about(request):
+    contexto = {}
+    return render(request, "AppBlog/about.html", contexto)
